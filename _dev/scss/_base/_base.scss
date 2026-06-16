@@ -1,0 +1,223 @@
+@use '../_foundation/' as *;
+
+// Base
+// =============================================================================
+* {
+  &,
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
+}
+
+// Margin, Padding Reset
+// ===============================================
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul,
+dl,
+dt,
+dd,
+button,
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+// Border Reset
+// ===============================================
+img,
+button {
+  border: 0;
+}
+
+// button Reset
+// ===============================================
+button {
+  background-color: transparent;
+
+  &:not([disabled]) {
+    cursor: pointer;
+  }
+}
+
+// The document element
+// ===============================================
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+// Sections
+// ===============================================
+body {
+  color: var(--COLOR_FONT);
+  font-family: var(--FONT_FAMILY);
+  font-feature-settings: 'palt';
+  font-size: var(--FONT_SIZE);
+  height: 100%;
+  line-height: var(--LINE_HEIGHT);
+  overflow-x: hidden;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+}
+
+h1 {
+  font-size: px-to-rem(40);
+}
+
+h2 {
+  font-size: px-to-rem(32);
+}
+
+h3 {
+  font-size: px-to-rem(28);
+}
+
+h4 {
+  font-size: px-to-rem(24);
+}
+
+h5 {
+  font-size: px-to-rem(20);
+}
+
+h6 {
+  font-size: px-to-rem(16);
+}
+
+// Text-level semantics
+// ===============================================
+em,
+strong,
+b {
+  font-weight: bold;
+}
+
+em {
+  font-style: normal;
+  color: var(--COLOR_BRAND_PRIMARY);
+}
+
+strong {
+  color: var(--COLOR_ROLE_DANGER_DARK);
+}
+
+sub,
+sup {
+  bottom: -0.2em;
+  font-size: 50%;
+}
+
+// Embedded content
+// ===============================================
+img,
+svg {
+  height: auto;
+  max-width: 100%;
+  width: auto;
+}
+
+img {
+  vertical-align: bottom;
+}
+
+a {
+  text-decoration: none;
+
+  img {
+    pointer-events: none;
+  }
+}
+
+// Forms
+// ===============================================
+[type='text'],
+[type='date'],
+[type='datetime-local'],
+[type='email'],
+[type='month'],
+[type='number'],
+[type='password'],
+[type='search'],
+[type='tel'],
+[type='time'],
+[type='url'],
+[type='week'],
+select {
+  line-height: 1;
+}
+
+[type='text'],
+[type='date'],
+[type='datetime-local'],
+[type='email'],
+[type='month'],
+[type='number'],
+[type='password'],
+[type='search'],
+[type='tel'],
+[type='time'],
+[type='url'],
+[type='week'],
+select,
+textarea {
+  appearance: none;
+  border-radius: 0;
+  color: currentColor;
+  font-size: px-to-rem(16);
+}
+
+[type='date'] {
+  &::-webkit-inner-spin-button,
+  &::-webkit-clear-button {
+    appearance: none;
+  }
+
+  &::-webkit-calendar-picker-indicator {
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+
+::placeholder {
+  opacity: 1;
+}
+
+textarea {
+  overflow: auto hidden;
+  resize: vertical;
+}
+
+// Interactive elements
+// ===============================================
+summary {
+  &::-webkit-details-marker {
+    display: none;
+  }
+}
+
+// List
+// ===============================================
+li {
+  list-style: none;
+}

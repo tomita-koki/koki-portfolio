@@ -1,0 +1,9 @@
+@use 'sass:math';
+
+// pxの単位をremに変換
+// @param {Number}  $tempSize - 設定したフォントサイズ（単位なし）
+// @param {Number}  $tempRoot - ルートのフォントサイズ（単位なし）
+// =============================================================================
+@function px-to-rem($tempSize: 16, $tempRoot: 16) {
+  @return #{math.div($tempSize, $tempRoot)}rem;
+}

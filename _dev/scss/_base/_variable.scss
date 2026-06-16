@@ -1,0 +1,26 @@
+$BREAKPOINT: 768px;
+
+:root {
+  /* font */
+  --FONT_FAMILY: "Yu Gothic", sans-serif;
+
+  /* color */
+  --COLOR_PRIMARY: #fff;
+  --COLOR_SECONDARY: #ddd;
+  --COLOR_FONT: #666666;
+  --COLOR_GRAY: #707070;
+  --COLOR_STRONG: #e11515;
+  --COLOR_BTN: #FDB0A3;
+  --COLOR_BTN2: #D88273;
+  --COLOR_BTN3: #B0D2E8;
+  --COLOR_BEIGE: #FEF4E7;
+
+  /* width */
+  --FONT_SIZE: #{px-to-rem(16)};
+
+  /* width */
+  --WIDTH_CONTENT: 1400px;
+
+  /* margin */
+  --MODULE_MARGIN: 24px;
+}

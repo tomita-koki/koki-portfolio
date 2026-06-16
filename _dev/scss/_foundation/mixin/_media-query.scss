@@ -1,0 +1,22 @@
+@use '../../_base/variable' as *;
+
+// ブレークポイント切り替え後のスタイルを指定
+// ---------------------------------------------------------------------------
+@mixin media-query($_breakpoint: $BREAKPOINT, $_range: above, $_breakpoint-min: null, $_breakpoint-max: null) {
+    @if $_range == above {
+      // Wide Viewport
+      @media screen and (min-width: $_breakpoint) {
+        @content;
+      }
+    } @else if $_range == below {
+      // Narrow Viewport
+      @media screen and (max-width: ($_breakpoint - 1px)) {
+        @content;
+      }
+    } @else if $_range == between {
+      // between Narrow Viewport and Wide Viewport
+      @media (min-width: ($_breakpoint-min)) and (max-width: ($_breakpoint-max - 1px)) {
+        @content;
+      }
+    }
+  }
