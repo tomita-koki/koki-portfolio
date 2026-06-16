@@ -17,7 +17,7 @@ function browserSyncTask(done) {
     server: {
       baseDir: ".",
     },
-    startPath: "/src/index.html",
+    startPath: "/index.html",
     notify: false,
     open: true,
     reloadOnRestart: true,
