@@ -1,12 +1,437 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="/asset/css/style.css">
-  <title>Document</title>
+
+  <title>koki｜Web制作・コーディング代行</title>
+  <meta name="description" content="正確なコーディングから、公開後の運用・保守まで。デザインカンプをそのまま動くかたちにする、フリーランスWeb実装担当のポートフォリオ。">
+
+  <!-- OGP（公開ドメイン確定後、URL を実ドメインに置換してください） -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="koki｜Web制作・コーディング代行">
+  <meta property="og:description" content="正確なコーディングから、公開後の運用・保守まで。デザインをそのまま動くかたちに。">
+  <meta property="og:url" content="https://REPLACE-WITH-YOUR-DOMAIN.pages.dev/">
+  <meta property="og:locale" content="ja_JP">
+  <!-- OGP画像(1200x630)を asset/images/ogp.png 等に用意したら下記を有効化
+  <meta property="og:image" content="https://REPLACE-WITH-YOUR-DOMAIN.pages.dev/asset/images/ogp.png">
+  <meta name="twitter:card" content="summary_large_image"> -->
 </head>
 <body>
-  <p class="red">テキストテキストテキストテキスト</p>
+  <!-- Header -->
+  <header class="header">
+    <div class="l-inner">
+      <div class="header__bar">
+        <p class="header__logo">
+          <span class="header__logo-mark">+</span>
+          <span class="header__logo-text">koki-portfolio</span>
+        </p>
+        <button class="header__toggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="global-nav">
+          <span class="header__toggle-bar" aria-hidden="true"></span>
+          <span class="header__toggle-bar" aria-hidden="true"></span>
+          <span class="header__toggle-bar" aria-hidden="true"></span>
+        </button>
+        <nav class="header__nav" id="global-nav">
+          <span class="header__nav-label" aria-hidden="true">Menu</span>
+          <a href="#service" class="header__link">Service</a>
+          <a href="#why" class="header__link">Why me</a>
+          <a href="#works" class="header__link">Works</a>
+          <a href="#flow" class="header__link">Flow</a>
+          <a href="#contact" class="header__link">Contact</a>
+          <a href="#contact" class="header__nav-cta">お問い合わせはこちら</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- First View -->
+    <section class="fv">
+      <div class="fv__grid" aria-hidden="true">
+        <span class="fv__grid-lines"></span>
+        <canvas class="fv__grid-nodes"></canvas>
+        <span class="fv__spot"></span>
+        <span class="fv__marker fv__marker--tl">+</span>
+        <span class="fv__marker fv__marker--tr">+</span>
+      </div>
+
+      <div class="fv__inner">
+        <div class="fv__content">
+          <h1 class="fv__title">
+            <span class="fv__title-text"><span class="fv__title-line">デザインの先は、</span><br><span class="fv__title-line">任せてください。</span><span class="fv__cursor" aria-hidden="true"></span></span>
+          </h1>
+
+          <p class="fv__lead">正確なコーディングから、公開後の運用・保守まで。あなたが描いたものを、そのまま動くかたちにします。</p>
+
+          <div class="fv__cta">
+            <a href="#contact" class="fv__btn">お問い合わせはこちら</a>
+          </div>
+        </div>
+      </div>
+
+      <span class="fv__scroll">
+        <span class="fv__scroll-text">scroll</span>
+        <span class="fv__scroll-line" aria-hidden="true"></span>
+      </span>
+
+      <span class="fv__rule" aria-hidden="true"></span>
+    </section>
+
+    <!-- Service -->
+    <section id="service" class="section">
+      <div class="l-inner">
+        <p class="eyebrow">
+          <span class="eyebrow__num">01</span>
+          <span class="eyebrow__dash">——</span>
+          <span class="eyebrow__label">Service</span>
+        </p>
+
+        <div class="service__lead">
+          <p class="lead">デザインを正確にかたちにし、公開後も支える。制作の「実装まわり」を引き受けます。</p>
+        </div>
+
+        <div class="service__grid">
+          <!-- コーディング代行 -->
+          <div class="panel">
+            <span class="panel__marker panel__marker--left" aria-hidden="true">+</span>
+            <div class="panel__body">
+              <div class="service-card__head">
+                <h3 class="service-card__title">コーディング代行</h3>
+                <span class="service-card__line" aria-hidden="true"></span>
+              </div>
+              <p class="service-card__desc">デザインカンプを、崩さず・正確に。レスポンシブも表示速度も配慮した、保守しやすいコードで実装します。</p>
+              <ul class="service-card__list">
+                <li class="service-card__item"><span class="service-card__bullet" aria-hidden="true">·</span><span class="service-card__text">LP・コーポレートサイトのコーディング</span></li>
+                <li class="service-card__item"><span class="service-card__bullet" aria-hidden="true">·</span><span class="service-card__text">レスポンシブ対応（PC / タブレット / スマホ）</span></li>
+                <li class="service-card__item"><span class="service-card__bullet" aria-hidden="true">·</span><span class="service-card__text">既存サイトの改修・部分修正</span></li>
+                <li class="service-card__item"><span class="service-card__bullet" aria-hidden="true">·</span><span class="service-card__text">デザインカンプ（Figma / XD / PSD）からの実装</span></li>
+                <li class="service-card__item"><span class="service-card__bullet" aria-hidden="true">·</span><span class="service-card__text">表示速度・アクセシビリティへの配慮</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 運用・保守 -->
+          <div class="panel">
+            <span class="panel__marker panel__marker--right" aria-hidden="true">+</span>
+            <div class="panel__body">
+              <div class="service-card__head">
+                <h3 class="service-card__title">運用・保守</h3>
+                <span class="service-card__line" aria-hidden="true"></span>
+              </div>
+              <p class="service-card__desc">「作って終わり」にしません。公開後のテキスト修正・画像差し替えから、継続的な更新管理まで、安心して任せられる体制で支えます。</p>
+              <ul class="service-card__list">
+                <li class="service-card__item"><span class="service-card__bullet" aria-hidden="true">·</span><span class="service-card__text">テキスト・画像の更新、差し替え</span></li>
+                <li class="service-card__item"><span class="service-card__bullet" aria-hidden="true">·</span><span class="service-card__text">バナー・キャンペーンページの追加</span></li>
+                <li class="service-card__item"><span class="service-card__bullet" aria-hidden="true">·</span><span class="service-card__text">WordPressサイトの更新・保守</span></li>
+                <li class="service-card__item"><span class="service-card__bullet" aria-hidden="true">·</span><span class="service-card__text">不具合の修正、軽微な改善</span></li>
+                <li class="service-card__item"><span class="service-card__bullet" aria-hidden="true">·</span><span class="service-card__text">決まったフォーマットの更新指示にも正確に対応。運用フローに乗せやすい進め方</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <span class="section__rule" aria-hidden="true"></span>
+    </section>
+
+    <!-- Why me -->
+    <section id="why" class="section">
+      <div class="l-inner">
+        <p class="eyebrow">
+          <span class="eyebrow__num">02</span>
+          <span class="eyebrow__dash">——</span>
+          <span class="eyebrow__label">Why me</span>
+        </p>
+
+        <div class="why__lead">
+          <p class="lead">コードは、誰でも書ける時代になりました。だからこそ大切にしているのは、「正確さ」と「最後まで責任を持つこと」です。</p>
+        </div>
+
+        <div class="why__grid">
+          <div class="panel">
+            <span class="panel__marker panel__marker--left" aria-hidden="true">+</span>
+            <div class="panel__body">
+              <span class="why-card__index">01</span>
+              <div class="why-card__head">
+                <h3 class="why-card__title">イメージ通りに、正確に</h3>
+                <span class="why-card__line" aria-hidden="true"></span>
+              </div>
+              <p class="why-card__desc">デザインカンプや指示の意図を丁寧に読み解き、認識のズレを残しません。「思っていたのと違う」をなくし、描いたデザインをそのままのかたちで実装します。</p>
+            </div>
+          </div>
+          
+          <div class="panel">
+            <span class="panel__marker panel__marker--left" aria-hidden="true">+</span>
+            <div class="panel__body">
+              <span class="why-card__index">02</span>
+              <div class="why-card__head">
+                <h3 class="why-card__title">品質は、最後まで自分が担保する</h3>
+                <span class="why-card__line" aria-hidden="true"></span>
+              </div>
+              <p class="why-card__desc">効率化のためツールも活用しますが、任せきりにはしません。コードの一行一行を自分の目で確認し、崩れ・余計な記述・保守性をチェックして仕上げる。最終的な品質と納品の責任は、私が持ちます。</p>
+            </div>
+          </div>
+
+          <div class="panel">
+            <span class="panel__marker panel__marker--left" aria-hidden="true">+</span>
+            <div class="panel__body">
+              <span class="why-card__index">03</span>
+              <div class="why-card__head">
+                <h3 class="why-card__title">「作って終わり」にしない</h3>
+                <span class="why-card__line" aria-hidden="true"></span>
+              </div>
+              <p class="why-card__desc">公開後のことまで考えた実装を心がけています。修正しやすく、運用しやすい構造に。そのまま運用・保守までお任せいただける、長く付き合える実装担当です。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <span class="section__rule" aria-hidden="true"></span>
+    </section>
+
+    <!-- Works -->
+    <section id="works" class="section">
+      <div class="l-inner">
+        <p class="eyebrow">
+          <span class="eyebrow__num">03</span>
+          <span class="eyebrow__dash">——</span>
+          <span class="eyebrow__label">Works</span>
+        </p>
+
+        <div class="works__lead">
+          <p class="lead">制作したランディングページ・サイトの一部をご紹介します。</p>
+        </div>
+
+        <div class="works__grid">
+          <div class="panel">
+            <span class="panel__marker panel__marker--left" aria-hidden="true">+</span>
+            <a class="work-card" href="https://sekaishiseifuku.com/" target="_blank" rel="noopener noreferrer">
+              <span class="work-card__thumb">
+                <img src="/asset/images/works/sekaishi.jpg" alt="世界史解体新書のサイト" loading="lazy">
+              </span>
+              <span class="work-card__body">
+                <span class="work-card__date">2025</span>
+                <span class="work-card__title">世界史解体新書</span>
+                <span class="work-card__desc">予備校講師・著者の世界史解説サイト。「暗記ではなく、点と点の繋がりで学ぶ」をコンセプトにしたコンテンツサイトを実装。</span>
+                <span class="work-card__more">View site
+                  <svg class="icon work-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"></path><path d="M7 7h10v10"></path></svg>
+                </span>
+              </span>
+            </a>
+          </div>
+
+          <div class="panel">
+            <span class="panel__marker panel__marker--left" aria-hidden="true">+</span>
+            <a class="work-card" href="https://onlinevideoschool.pages.dev/" target="_blank" rel="noopener noreferrer">
+              <span class="work-card__thumb">
+                <img src="/asset/images/works/onlineschool.jpg" alt="オンラインスクールのランディングページ" loading="lazy">
+              </span>
+              <span class="work-card__body">
+                <span class="work-card__date">2025</span>
+                <span class="work-card__title">オンラインスクール LP</span>
+                <span class="work-card__desc">オンライン教育サービスの紹介と申込導線を設計したランディングページ。</span>
+                <span class="work-card__more">View site
+                  <svg class="icon work-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"></path><path d="M7 7h10v10"></path></svg>
+                </span>
+              </span>
+            </a>
+          </div>
+
+          <div class="panel">
+            <span class="panel__marker panel__marker--left" aria-hidden="true">+</span>
+            <a class="work-card" href="https://tomita-koki.github.io/cooking/" target="_blank" rel="noopener noreferrer">
+              <span class="work-card__thumb">
+                <img src="/asset/images/works/cooking.jpg" alt="オンライン料理教室 エプロンコネクトのランディングページ" loading="lazy">
+              </span>
+              <span class="work-card__body">
+                <span class="work-card__date">2025</span>
+                <span class="work-card__title">オンライン料理教室「エプロンコネクト」</span>
+                <span class="work-card__desc">自宅でマンツーマン受講できる料理教室のLP。材料配送・24時間受講・月額制が特徴。</span>
+                <span class="work-card__more">View site
+                  <svg class="icon work-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"></path><path d="M7 7h10v10"></path></svg>
+                </span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <p class="works__note">このほか、守秘などの都合で公開していない制作実績もございます。面談・お問い合わせ時にご紹介します。</p>
+      </div>
+      <span class="section__rule" aria-hidden="true"></span>
+    </section>
+
+    <!-- Flow -->
+    <section id="flow" class="section">
+      <div class="l-inner">
+        <p class="eyebrow">
+          <span class="eyebrow__num">04</span>
+          <span class="eyebrow__dash">——</span>
+          <span class="eyebrow__label">Flow</span>
+        </p>
+
+        <div class="flow__list">
+          <div class="flow__item">
+            <span class="flow__line" aria-hidden="true"></span>
+            <div class="flow__row">
+              <div class="flow__badge"><span class="flow__circle"><span class="flow__num">01</span></span></div>
+              <div class="flow__content">
+                <h3 class="flow__title">お問い合わせ</h3>
+                <p class="flow__desc">フォームよりご連絡ください。お見積りだけでも歓迎。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flow__item">
+            <span class="flow__line" aria-hidden="true"></span>
+            <div class="flow__row">
+              <div class="flow__badge"><span class="flow__circle"><span class="flow__num">02</span></span></div>
+              <div class="flow__content">
+                <h3 class="flow__title">ヒアリング</h3>
+                <p class="flow__desc">カンプ・指示書をもとに要望と仕様をすり合わせ。認識のズレをこの段階でなくす。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flow__item">
+            <span class="flow__line" aria-hidden="true"></span>
+            <div class="flow__row">
+              <div class="flow__badge"><span class="flow__circle"><span class="flow__num">03</span></span></div>
+              <div class="flow__content">
+                <h3 class="flow__title">お見積り・ご契約</h3>
+                <p class="flow__desc">料金と納期を提示。納得いただいてから着手。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flow__item">
+            <span class="flow__line" aria-hidden="true"></span>
+            <div class="flow__row">
+              <div class="flow__badge"><span class="flow__circle"><span class="flow__num">04</span></span></div>
+              <div class="flow__content">
+                <h3 class="flow__title">実装・確認</h3>
+                <p class="flow__desc">表示・動作を確認しながら仕上げる。途中の確認・修正にも柔軟に対応。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flow__item">
+            <div class="flow__row">
+              <div class="flow__badge"><span class="flow__circle"><span class="flow__num">05</span></span></div>
+              <div class="flow__content">
+                <h3 class="flow__title">納品・公開後サポート</h3>
+                <p class="flow__desc">納品・公開後も修正や更新の相談を継続して承る。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <span class="section__rule" aria-hidden="true"></span>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <div class="l-inner">
+        <p class="eyebrow">
+          <span class="eyebrow__num">05</span>
+          <span class="eyebrow__dash">——</span>
+          <span class="eyebrow__label">Contact</span>
+        </p>
+
+        <div class="contact__lead">
+          <p class="lead">実装のご依頼、運用のご相談、お見積りのみでもお気軽にどうぞ。通常2〜3営業日以内にご返信します。</p>
+        </div>
+
+        <div class="contact__grid">
+          <div class="contact__form-col">
+            <div class="panel">
+              <span class="panel__marker panel__marker--left" aria-hidden="true">+</span>
+              <div class="contact__panel">
+                <form class="contact-form" data-contact-form novalidate>
+                  <div>
+                    <label class="contact-form__label" for="name">お名前 <span class="contact-form__req">*</span></label>
+                    <input class="contact-form__input" type="text" id="name" name="name" required>
+                  </div>
+                  <div>
+                    <label class="contact-form__label" for="company">会社名</label>
+                    <input class="contact-form__input" type="text" id="company" name="company">
+                  </div>
+                  <div>
+                    <label class="contact-form__label" for="email">メールアドレス <span class="contact-form__req">*</span></label>
+                    <input class="contact-form__input" type="email" id="email" name="email" required>
+                  </div>
+                  <div>
+                    <label class="contact-form__label" for="type">ご依頼の種別 <span class="contact-form__req">*</span></label>
+                    <select class="contact-form__select" id="type" name="type" required>
+                      <option value="">選択してください</option>
+                      <option value="coding">コーディング代行</option>
+                      <option value="maintenance">運用保守</option>
+                      <option value="other">その他</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="contact-form__label" for="message">お問い合わせ内容 <span class="contact-form__req">*</span></label>
+                    <textarea class="contact-form__textarea" id="message" name="message" rows="6" required></textarea>
+                  </div>
+                  <button class="contact-form__submit" type="submit">内容を送信する</button>
+                </form>
+
+                <div class="contact__success" data-contact-success hidden>
+                  <div class="contact__success-icon" aria-hidden="true">✓</div>
+                  <p class="contact__success-title">送信完了</p>
+                  <p class="contact__success-text">お問い合わせありがとうございます。<br>2〜3営業日以内にご返信いたします。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="contact__aside">
+            <h3 class="contact__aside-title">その他の連絡先</h3>
+
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="contact-card">
+              <div class="contact-card__head">
+                <svg class="icon contact-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+                  <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                </svg>
+                <span class="contact-card__name">GitHub</span>
+              </div>
+              <p class="contact-card__sub">コードサンプルを公開</p>
+            </a>
+
+            <div class="contact-card">
+              <div class="contact-card__head">
+                <svg class="icon contact-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                </svg>
+                <span class="contact-card__name">Email</span>
+              </div>
+              <p class="contact-card__sub contact-card__sub--mono">syukatutomi@gmail.com</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+      <span class="section__rule" aria-hidden="true"></span>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="l-inner">
+      <div class="footer__bar">
+        <p class="footer__logo">
+          <span class="footer__logo-mark">+</span>
+          <span class="footer__logo-text">koki-portfolio</span>
+        </p>
+        <p class="footer__copy">© 2026 koki-portfolio</p>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+  <script defer src="/asset/js/main.js"></script>
 </body>
 </html>

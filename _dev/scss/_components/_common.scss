@@ -1,0 +1,109 @@
+@use '../_foundation/' as *;
+
+// セクション共通レイアウト
+// =============================================================================
+.section {
+  position: relative;
+  padding-block: px-to-rem(128);
+  background-color: var(--COLOR_BG);
+  scroll-margin-top: px-to-rem(64);
+}
+
+.section__rule {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: px-to-rem(1);
+  background-color: var(--COLOR_BORDER);
+}
+
+// 中央寄せコンテナ
+// ---------------------------------------------------------------------------
+.l-inner {
+  width: 100%;
+  max-width: px-to-rem(1280);
+  margin-inline: auto;
+  padding-inline: px-to-rem(24);
+
+  @include media-query {
+    padding-inline: px-to-rem(48);
+  }
+}
+
+// アイブロウ（番号 —— ラベル）
+// ---------------------------------------------------------------------------
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: px-to-rem(12);
+  margin-bottom: px-to-rem(64);
+  font-size: px-to-rem(14);
+}
+
+.eyebrow__num {
+  font-family: var(--FONT_MONO);
+  color: var(--COLOR_ACCENT);
+}
+
+.eyebrow__dash {
+  font-family: var(--FONT_MONO);
+  color: var(--COLOR_BORDER);
+}
+
+.eyebrow__label {
+  font-family: var(--FONT_EN);
+  color: color-mix(in srgb, var(--COLOR_DARK) 60%, transparent);
+}
+
+// 大きめリード文
+// ---------------------------------------------------------------------------
+.lead {
+  max-width: px-to-rem(768);
+  font-family: var(--FONT_JA);
+  font-size: px-to-rem(24);
+  line-height: 1.625;
+  color: var(--COLOR_DARK);
+
+  @include media-query {
+    font-size: px-to-rem(30);
+  }
+}
+
+// パネル（フロストカード）
+// ---------------------------------------------------------------------------
+.panel {
+  position: relative;
+}
+
+.panel__marker {
+  position: absolute;
+  top: px-to-rem(-12);
+  color: var(--COLOR_BORDER);
+  font-family: var(--FONT_MONO);
+  font-size: px-to-rem(12);
+
+  &--left {
+    left: px-to-rem(-12);
+  }
+
+  &--right {
+    right: px-to-rem(-12);
+  }
+}
+
+.panel__body {
+  height: 100%;
+  padding: px-to-rem(40);
+  border: px-to-rem(1) solid var(--COLOR_BORDER);
+  border-radius: px-to-rem(8);
+  background-color: color-mix(in srgb, var(--COLOR_PRIMARY) 40%, transparent);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+// アイコン（lucide 由来の線アイコン）
+// ---------------------------------------------------------------------------
+.icon {
+  flex-shrink: 0;
+  color: var(--COLOR_ACCENT);
+}

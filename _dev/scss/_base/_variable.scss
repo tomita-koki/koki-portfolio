@@ -3,6 +3,9 @@ $BREAKPOINT: 768px;
 :root {
   /* font */
   --FONT_FAMILY: "Yu Gothic", sans-serif;
+  --FONT_JA: "Noto Sans JP", sans-serif;
+  --FONT_EN: "Inter", sans-serif;
+  --FONT_MONO: "JetBrains Mono", monospace;
 
   /* color */
   --COLOR_PRIMARY: #fff;
@@ -14,6 +17,13 @@ $BREAKPOINT: 768px;
   --COLOR_BTN2: #D88273;
   --COLOR_BTN3: #B0D2E8;
   --COLOR_BEIGE: #FEF4E7;
+
+  /* color - landing page */
+  --COLOR_BG: #FAFAF9;
+  --COLOR_DARK: #1A1A1A;
+  --COLOR_BORDER: #E5E5E3;
+  --COLOR_ACCENT: #3538CD;
+  --COLOR_ACCENT_DARK: #2d2eb3;
 
   /* width */
   --FONT_SIZE: #{px-to-rem(16)};

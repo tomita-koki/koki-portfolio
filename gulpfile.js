@@ -31,15 +31,11 @@ function watchTask() {
   // SCSSファイルの監視
   watch("_dev/scss/**/*.scss", cssSass);
 
-  // HTMLファイルの監視
-  watch("src/**/*.html").on("change", function (path) {
-    browserSync.reload(path);
-  });
+  // HTMLファイルの監視（ルートの index.html を含む）
+  watch("*.html").on("change", browserSync.reload);
 
   // JavaScriptファイルの監視
-  watch("src/**/*.js").on("change", function (path) {
-    browserSync.reload(path);
-  });
+  watch("asset/js/**/*.js").on("change", browserSync.reload);
 }
 
 // デフォルトタスク
