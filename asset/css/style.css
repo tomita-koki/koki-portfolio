@@ -249,6 +249,7 @@ li {
   gap: 0.75rem;
   margin-bottom: 4rem;
   font-size: 0.875rem;
+  font-weight: 400;
 }
 
 .eyebrow__num {

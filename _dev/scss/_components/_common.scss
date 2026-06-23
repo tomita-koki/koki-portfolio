@@ -38,6 +38,7 @@
   gap: px-to-rem(12);
   margin-bottom: px-to-rem(64);
   font-size: px-to-rem(14);
+  font-weight: 400; // h2 にしてもラベルの見た目は変えない
 }
 
 .eyebrow__num {
