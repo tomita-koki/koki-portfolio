@@ -1,2 +1,6 @@
 name = "koki-portfolio"
-pages_build_output_dir = "dist"
+compatibility_date = "2025-06-01"
+
+# 静的アセットのみを配信する Worker（dist の中身をそのまま公開）
+[assets]
+directory = "./dist"
