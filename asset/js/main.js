@@ -1,3 +1,7 @@
+// JS が実行されたことを示すフラグ。<html class="no-js"> を前提に、
+// JS 無しでは操作できない UI（カルーセルの矢印/ドットなど）を CSS 側で隠す。
+document.documentElement.classList.replace('no-js', 'js');
+
 // =============================================================================
 // お問い合わせフォーム（モック送信）
 // 実際の送信処理はないため、送信時に完了表示へ切り替え、数秒後に元へ戻す。
@@ -204,7 +208,7 @@ function initScrollReveal() {
     const targets = inner ? Array.prototype.slice.call(inner.children) : [section];
 
     gsap.from(targets, {
-      opacity: 0,
+      autoAlpha: 0, // opacity と併せて visibility も切り替え、表示前の要素をタブ移動できないようにする
       y: 40,
       duration: 0.8,
       ease: 'power2.out',
@@ -221,7 +225,7 @@ function initScrollReveal() {
   const footer = document.querySelector('.footer');
   if (footer) {
     gsap.from(footer, {
-      opacity: 0,
+      autoAlpha: 0,
       y: 40,
       duration: 0.8,
       ease: 'power2.out',
@@ -232,6 +236,136 @@ function initScrollReveal() {
       },
     });
   }
+}
+
+// =============================================================================
+// Works カルーセル（シームレス無限ループ）
+// CSS スクロールスナップを土台に、矢印・ドットのナビゲーションだけ JS で補う。
+// 先頭スライドのクローンを末尾に、末尾スライドのクローンを先頭に足しておき、
+// クローン領域まで来たら同じ見た目の実スライド位置へ瞬間的に巻き戻す。
+// これにより「→」「←」どちらも、ボタン操作・スワイプ・キーボード操作を問わず
+// 端に来ても同じ方向へ流れ続ける。
+// =============================================================================
+function initWorksCarousel() {
+  const root = document.querySelector('[data-works-carousel]');
+  if (!root) return;
+
+  const track = root.querySelector('[data-carousel-track]');
+  const prev = root.querySelector('[data-carousel-prev]');
+  const next = root.querySelector('[data-carousel-next]');
+  const dotsWrap = root.querySelector('[data-carousel-dots]');
+  if (!track || !prev || !next || !dotsWrap) return;
+
+  const slides = Array.prototype.slice.call(track.children);
+  const count = slides.length;
+  if (count === 0) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  // 同時に見える最大枚数（CSS の --carousel-visible と同じ値。SCSS 側と
+  // 二重管理にならないよう、こちらは常に CSS カスタムプロパティから読む）
+  const visible = parseInt(getComputedStyle(track).getPropertyValue('--carousel-visible'), 10) || 3;
+  const cloneCount = Math.min(visible, count);
+
+  const markClone = (clone) => {
+    clone.setAttribute('aria-hidden', 'true');
+    clone.querySelectorAll('a, button').forEach((el) => el.setAttribute('tabindex', '-1'));
+    return clone;
+  };
+
+  // 末尾に先頭 cloneCount 枚、先頭に末尾 cloneCount 枚を複製し、
+  // 前後どちらへスクロールしても継ぎ目なく循環して見えるようにする
+  slides.slice(0, cloneCount).forEach((slide) => {
+    track.appendChild(markClone(slide.cloneNode(true)));
+  });
+  slides.slice(count - cloneCount).reverse().forEach((slide) => {
+    track.insertBefore(markClone(slide.cloneNode(true)), track.firstChild);
+  });
+
+  // 1スライド分のスクロール量（カード幅 + gap）。ブレークポイント切り替え時
+  // 以外は変化しないため、毎スクロールイベントで測り直さずキャッシュする。
+  let cachedStep = 0;
+  const recalcStep = () => {
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    cachedStep = slides[0].getBoundingClientRect().width + gap;
+  };
+  const step = () => cachedStep || (recalcStep(), cachedStep);
+
+  // 実スライド0の開始位置（先頭に足したクローン分のオフセット）
+  const leadWidth = () => cloneCount * step();
+  const maxScroll = () => track.scrollWidth - track.clientWidth;
+
+  // 実スライドのインデックス（0 〜 count-1 を基準に、ループ演出中は
+  // 一時的にその範囲外にもなる）。ボタン操作はこの値を直接進退させるので、
+  // アニメーション中の scrollLeft を読みに行かず、連打してもズレない。
+  let target = 0;
+
+  const setActiveDot = (idx) => {
+    const real = ((idx % count) + count) % count;
+    dots.forEach((dot, i) => dot.classList.toggle('is-active', i === real));
+  };
+
+  const scrollToIndex = (idx) => {
+    target = idx;
+    setActiveDot(target);
+    const left = leadWidth() + target * step();
+    track.scrollTo({
+      left: Math.min(Math.max(left, 0), maxScroll()),
+      behavior: reduceMotion.matches ? 'auto' : 'smooth',
+    });
+  };
+
+  // クローン領域に入ったままなら、同じ見た目の実位置へ瞬間的に巻き戻す
+  const unwrap = () => {
+    const trailStart = leadWidth() + count * step();
+    if (track.scrollLeft >= trailStart - 1) {
+      track.scrollLeft -= count * step();
+      target -= count;
+    } else if (track.scrollLeft <= leadWidth() - 1) {
+      track.scrollLeft += count * step();
+      target += count;
+    }
+  };
+
+  // ドットは実スライド数ぶん固定
+  const dots = slides.map((_, i) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'works-carousel__dot';
+    dot.setAttribute('aria-label', `${i + 1}番目の実績へ`);
+    dotsWrap.appendChild(dot);
+    dot.addEventListener('click', () => {
+      unwrap();
+      scrollToIndex(i);
+    });
+    return dot;
+  });
+
+  prev.addEventListener('click', () => {
+    unwrap();
+    scrollToIndex(target - 1);
+  });
+
+  next.addEventListener('click', () => {
+    unwrap();
+    scrollToIndex(target + 1);
+  });
+
+  // スクロールが止まったタイミングで巻き戻し判定をする（スワイプ／キーボード
+  // 操作など、ボタンを介さない移動でも target を同期させる）
+  let settleTimer = 0;
+  track.addEventListener('scroll', () => {
+    target = Math.round((track.scrollLeft - leadWidth()) / step());
+    setActiveDot(target);
+    window.clearTimeout(settleTimer);
+    settleTimer = window.setTimeout(unwrap, 150);
+  }, { passive: true });
+
+  window.addEventListener('resize', recalcStep);
+
+  recalcStep();
+  track.scrollLeft = leadWidth(); // 初期表示を実スライド0（先頭クローンの直後）に合わせる
+  setActiveDot(0);
 }
 
 // =============================================================================
@@ -269,6 +403,7 @@ function initNav() {
 document.addEventListener('DOMContentLoaded', () => {
   initNav();
   initContactForm();
+  initWorksCarousel();
   initFvAnimation();
   initFvBackground();
   initScrollReveal();

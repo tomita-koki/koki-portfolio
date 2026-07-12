@@ -873,16 +873,106 @@ body.is-nav-open {
   margin-bottom: 4rem;
 }
 
-.works__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
+.works-carousel {
   margin-bottom: 3rem;
 }
+
+.works-carousel__track {
+  --carousel-visible: 3;
+  display: flex;
+  gap: 1.25rem;
+  margin: -0.75rem;
+  padding: 0.75rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 0.75rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.works-carousel__track::-webkit-scrollbar {
+  display: none;
+}
+.works-carousel__track:focus-visible {
+  outline: 0.125rem solid var(--COLOR_ACCENT);
+  outline-offset: 0.125rem;
+}
+.works-carousel__track > .panel {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+}
 @media screen and (min-width: 768px) {
-  .works__grid {
-    grid-template-columns: repeat(3, 1fr);
+  .works-carousel__track > .panel {
+    flex-basis: calc((100% - 2.5rem) / 3);
   }
+}
+
+.works-carousel__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--MODULE_MARGIN);
+  margin-top: var(--MODULE_MARGIN);
+}
+
+.no-js .works-carousel__controls {
+  display: none;
+}
+
+.works-carousel__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0.0625rem solid var(--COLOR_BORDER);
+  border-radius: 50%;
+  color: var(--COLOR_DARK);
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+@media (any-hover: hover) {
+  .works-carousel__arrow:hover {
+    border-color: var(--COLOR_ACCENT);
+    color: var(--COLOR_ACCENT);
+  }
+}
+.works-carousel__arrow:focus-visible {
+  border-color: var(--COLOR_ACCENT);
+  color: var(--COLOR_ACCENT);
+}
+.works-carousel__arrow:active {
+  border-color: var(--COLOR_ACCENT);
+  color: var(--COLOR_ACCENT);
+}
+.works-carousel__arrow .icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.works-carousel__dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.works-carousel__dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: var(--COLOR_BORDER);
+  transition: background-color 0.2s ease;
+}
+@media (any-hover: hover) {
+  .works-carousel__dot:hover {
+    background-color: var(--COLOR_ACCENT_DARK);
+  }
+}
+.works-carousel__dot:focus-visible {
+  background-color: var(--COLOR_ACCENT_DARK);
+}
+.works-carousel__dot:active {
+  background-color: var(--COLOR_ACCENT_DARK);
+}
+.works-carousel__dot.is-active {
+  background-color: var(--COLOR_ACCENT);
 }
 
 .work-card {
@@ -1240,5 +1330,3 @@ a.contact-card:hover {
 .red {
   color: red;
 }
-
-/*# sourceMappingURL=style.css.map */

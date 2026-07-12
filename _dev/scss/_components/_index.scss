@@ -350,14 +350,110 @@
   margin-bottom: px-to-rem(64);
 }
 
-.works__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: px-to-rem(32);
-  margin-bottom: px-to-rem(48);
+// Works カルーセル
+// ---------------------------------------------------------------------------
+// gap と同時表示枚数は SCSS 側だけの定数にせず、--carousel-visible として
+// track に公開する。JS 側もここを読んでクローン枚数を決めるので、
+// カラム数を変える場合はこの2つの変数を直すだけでよい。
+// px-to-rem() は文字列を返すため（rem 化した値を演算できない）、
+// 演算はこの px 単位の数値のまま行い、最後に px-to-rem() へ渡す。
+$works-carousel-gap-px: 20;
+$works-carousel-visible: 3;
+$works-carousel-gap: px-to-rem($works-carousel-gap-px);
 
-  @include media-query {
-    grid-template-columns: repeat(3, 1fr);
+.works-carousel {
+  margin-bottom: px-to-rem(48);
+}
+
+// panel__marker（カード外 -12px の「+」）が切れないよう、
+// padding と負マージンで track の内側にはみ出し分の余白を確保する
+.works-carousel__track {
+  --carousel-visible: #{$works-carousel-visible};
+
+  display: flex;
+  gap: $works-carousel-gap;
+  margin: px-to-rem(-12);
+  padding: px-to-rem(12);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: px-to-rem(12);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &:focus-visible {
+    outline: px-to-rem(2) solid var(--COLOR_ACCENT);
+    outline-offset: px-to-rem(2);
+  }
+
+  > .panel {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+
+    @include media-query {
+      // gap × (表示枚数 - 1) を差し引いて等分
+      flex-basis: calc((100% - #{px-to-rem($works-carousel-gap-px * ($works-carousel-visible - 1))}) / #{$works-carousel-visible});
+    }
+  }
+}
+
+.works-carousel__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--MODULE_MARGIN);
+  margin-top: var(--MODULE_MARGIN);
+}
+
+// JS が動いていない場合、矢印/ドットは押しても反応しないため表示しない
+// （track 自体は overflow-x: auto なのでタッチ/トラックパッドで引き続き閲覧可能）
+.no-js .works-carousel__controls {
+  display: none;
+}
+
+.works-carousel__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: px-to-rem(40);
+  height: px-to-rem(40);
+  border: px-to-rem(1) solid var(--COLOR_BORDER);
+  border-radius: 50%;
+  color: var(--COLOR_DARK);
+  transition: border-color 0.2s ease, color 0.2s ease;
+
+  @include hover {
+    border-color: var(--COLOR_ACCENT);
+    color: var(--COLOR_ACCENT);
+  }
+
+  .icon {
+    width: px-to-rem(16);
+    height: px-to-rem(16);
+  }
+}
+
+.works-carousel__dots {
+  display: flex;
+  gap: px-to-rem(8);
+}
+
+.works-carousel__dot {
+  width: px-to-rem(8);
+  height: px-to-rem(8);
+  border-radius: 50%;
+  background-color: var(--COLOR_BORDER);
+  transition: background-color 0.2s ease;
+
+  @include hover {
+    background-color: var(--COLOR_ACCENT_DARK);
+  }
+
+  &.is-active {
+    background-color: var(--COLOR_ACCENT);
   }
 }
 
