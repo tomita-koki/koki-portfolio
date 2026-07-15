@@ -10,22 +10,22 @@
 
   <title>koki｜Web制作・コーディング代行</title>
   <meta name="description" content="正確なコーディングから、公開後の運用・保守まで。デザインカンプをそのまま動くかたちにする、フリーランスWeb実装担当のポートフォリオ。">
-  <link rel="canonical" href="https://koki-portfolio.syukatutomi.workers.dev/">
+  <link rel="canonical" href="https://koki-code.com/">
 
   <!-- OGP -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="koki-portfolio">
   <meta property="og:title" content="koki｜Web制作・コーディング代行">
   <meta property="og:description" content="正確なコーディングから、公開後の運用・保守まで。デザインをそのまま動くかたちに。">
-  <meta property="og:url" content="https://koki-portfolio.syukatutomi.workers.dev/">
-  <meta property="og:image" content="https://koki-portfolio.syukatutomi.workers.dev/asset/images/ogp.png">
+  <meta property="og:url" content="https://koki-code.com/">
+  <meta property="og:image" content="https://koki-code.com/asset/images/ogp.png">
   <meta property="og:locale" content="ja_JP">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="koki｜Web制作・コーディング代行">
   <meta name="twitter:description" content="正確なコーディングから、公開後の運用・保守まで。デザインをそのまま動くかたちに。">
-  <meta name="twitter:image" content="https://koki-portfolio.syukatutomi.workers.dev/asset/images/ogp.png">
+  <meta name="twitter:image" content="https://koki-code.com/asset/images/ogp.png">
 </head>
 <body>
   <!-- Header -->
@@ -409,6 +409,14 @@
                     <label class="contact-form__label" for="message">お問い合わせ内容 <span class="contact-form__req">*</span></label>
                     <textarea class="contact-form__textarea" id="message" name="message" rows="6" required></textarea>
                   </div>
+                  <!-- ハニーポット: 人間には見えない。ボット対策 -->
+                  <div class="contact-form__hp" aria-hidden="true">
+                    <label for="website">Website</label>
+                    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                  </div>
+                  <!-- Cloudflare Turnstile（データ属性の sitekey は本番キーに差し替える） -->
+                  <div class="cf-turnstile" data-sitekey="0x4AAAAAAD1sVL1ySaKenPYg" data-theme="light"></div>
+                  <p class="contact-form__error" data-contact-error hidden role="alert"></p>
                   <button class="contact-form__submit" type="submit">内容を送信する</button>
                 </form>
 
@@ -465,6 +473,7 @@
     </div>
   </footer>
 
+  <script defer src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
   <script defer src="/asset/js/main.js"></script>

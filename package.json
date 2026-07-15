@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "start": "npx gulp"
+    "start": "npx gulp",
+    "build": "npx gulp build",
+    "dev:worker": "npm run build && npx wrangler dev",
+    "deploy": "npm run build && npx wrangler deploy"
   },
   "keywords": [],
   "author": "",

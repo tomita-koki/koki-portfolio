@@ -12,17 +12,47 @@ function initContactForm() {
 
   if (!form || !success) return;
 
-  form.addEventListener('submit', (event) => {
+  const submitBtn = form.querySelector('.contact-form__submit');
+  const errorBox = form.querySelector('[data-contact-error]');
+  const submitLabel = submitBtn.textContent;
+
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    form.hidden = true;
-    success.hidden = false;
+    // form は novalidate なので、ここでネイティブ検証を明示的に走らせる
+    if (!form.reportValidity()) return;
 
-    window.setTimeout(() => {
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = '送信中…';
+    errorBox.hidden = true;
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const result = await res.json().catch(() => ({}));
+
+      if (!res.ok || !result.ok) {
+        throw new Error(result.error || '送信に失敗しました。時間をおいてもう一度お試しください。');
+      }
+
       form.reset();
-      success.hidden = true;
-      form.hidden = false;
-    }, 3000);
+      form.hidden = true;
+      success.hidden = false;
+    } catch (err) {
+      errorBox.textContent = err instanceof Error && err.message
+        ? err.message
+        : '送信に失敗しました。時間をおいてもう一度お試しください。';
+      errorBox.hidden = false;
+      if (window.turnstile) window.turnstile.reset();
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = submitLabel;
+    }
   });
 }
 

@@ -38,5 +38,14 @@ function watchTask() {
   watch("asset/js/**/*.js").on("change", browserSync.reload);
 }
 
+// 公開用 dist を組み立てるタスク（wrangler deploy はこの dist を配信する）
+// encoding: false は画像などのバイナリを壊さないために必須（gulp 5 の仕様）
+function buildDist() {
+  return src(["index.html", "asset/**/*"], { base: ".", encoding: false }).pipe(
+    dest("dist")
+  );
+}
+
 // デフォルトタスク
 exports.default = parallel(cssSass, browserSyncTask, watchTask);
+exports.build = series(cssSass, buildDist);

@@ -716,6 +716,30 @@ $works-carousel-gap: px-to-rem($works-carousel-gap-px);
   &:hover {
     background-color: var(--COLOR_ACCENT_DARK);
   }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+// ハニーポット（ボット対策の不可視フィールド）
+.contact-form__hp {
+  position: absolute;
+  left: -9999px;
+  width: px-to-rem(1);
+  height: px-to-rem(1);
+  overflow: hidden;
+}
+
+.contact-form__error {
+  font-family: var(--FONT_JA);
+  font-size: px-to-rem(14);
+  color: var(--COLOR_STRONG);
+}
+
+.contact-form__error[hidden] {
+  display: none;
 }
 
 .contact__success {

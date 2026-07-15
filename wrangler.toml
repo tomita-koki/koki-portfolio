@@ -1,6 +1,21 @@
 name = "koki-portfolio"
+main = "worker/index.js"
 compatibility_date = "2025-06-01"
 
-# 静的アセットのみを配信する Worker（dist の中身をそのまま公開）
+# 独自ドメイン（デプロイ時に DNS 設定も自動で行われる）
+routes = [
+  { pattern = "koki-code.com", custom_domain = true },
+  { pattern = "www.koki-code.com", custom_domain = true },
+]
+
+# 静的アセット（dist の中身）を先に配信し、一致しないリクエストは Worker が処理する
 [assets]
 directory = "./dist"
+
+[vars]
+CONTACT_TO = "syukatutomi@gmail.com"
+
+# シークレット（コードや設定ファイルには書かない）:
+#   npx wrangler secret put RESEND_API_KEY
+#   npx wrangler secret put TURNSTILE_SECRET_KEY
+# ローカル開発時は .dev.vars（gitignore 済み）に記述する

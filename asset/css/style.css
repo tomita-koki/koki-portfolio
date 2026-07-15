@@ -1230,6 +1230,28 @@ body.is-nav-open {
 .contact-form__submit:hover {
   background-color: var(--COLOR_ACCENT_DARK);
 }
+.contact-form__submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.contact-form__hp {
+  position: absolute;
+  left: -9999px;
+  width: 0.0625rem;
+  height: 0.0625rem;
+  overflow: hidden;
+}
+
+.contact-form__error {
+  font-family: var(--FONT_JA);
+  font-size: 0.875rem;
+  color: var(--COLOR_STRONG);
+}
+
+.contact-form__error[hidden] {
+  display: none;
+}
 
 .contact__success {
   padding-block: 5rem;
