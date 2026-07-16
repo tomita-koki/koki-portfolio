@@ -90,6 +90,16 @@
   max-width: px-to-rem(896);
 }
 
+// GSAP の登場アニメーション開始前に素のテキストが一瞬見えるのを防ぐ。
+// 表示は GSAP がインラインスタイルで復元する。GSAP の読み込みに失敗した場合の
+// 保険として、2.5 秒後に CSS アニメーションで強制表示する。
+@media (prefers-reduced-motion: no-preference) {
+  .js .fv__content {
+    opacity: 0;
+    animation: fv-content-show 0.6s ease 2.5s forwards;
+  }
+}
+
 // メインコピー
 // ---------------------------------------------------------------------------
 .fv__title {
@@ -206,6 +216,12 @@
 
   50% {
     opacity: 0.06;
+  }
+}
+
+@keyframes fv-content-show {
+  to {
+    opacity: 1;
   }
 }
 

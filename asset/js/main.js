@@ -1,6 +1,5 @@
-// JS が実行されたことを示すフラグ。<html class="no-js"> を前提に、
-// JS 無しでは操作できない UI（カルーセルの矢印/ドットなど）を CSS 側で隠す。
-document.documentElement.classList.replace('no-js', 'js');
+// no-js → js の切り替えは index.html の <head> インラインスクリプトで行う。
+// （FV の初期非表示を描画前に効かせるため、defer のこのファイルでは遅い）
 
 // =============================================================================
 // お問い合わせフォーム（モック送信）
@@ -77,9 +76,14 @@ function initFvAnimation() {
   const tl = gsap.timeline();
 
   // まず FV コンテンツ全体をフェードインさせる
-  tl.from(fv.querySelector('.fv__content'), {
+  // CSS 側で .js .fv__content を opacity: 0 にしているため、
+  // from ではなく fromTo で終了値を明示する
+  tl.fromTo(fv.querySelector('.fv__content'), {
     opacity: 0,
     y: 24,
+  }, {
+    opacity: 1,
+    y: 0,
     duration: 0.8,
     ease: 'power2.out',
   });

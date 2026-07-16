@@ -633,6 +633,12 @@ body.is-nav-open {
   max-width: 56rem;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .js .fv__content {
+    opacity: 0;
+    animation: fv-content-show 0.6s ease 2.5s forwards;
+  }
+}
 .fv__title {
   margin-bottom: 2rem;
   font-family: var(--FONT_JA);
@@ -738,6 +744,11 @@ body.is-nav-open {
   }
   50% {
     opacity: 0.06;
+  }
+}
+@keyframes fv-content-show {
+  to {
+    opacity: 1;
   }
 }
 @keyframes fv-cursor-blink {
