@@ -41,7 +41,7 @@ function watchTask() {
 // 公開用 dist を組み立てるタスク（wrangler deploy はこの dist を配信する）
 // encoding: false は画像などのバイナリを壊さないために必須（gulp 5 の仕様）
 function buildDist() {
-  return src(["index.html", "asset/**/*"], { base: ".", encoding: false }).pipe(
+  return src(["index.html", "favicon.ico", "asset/**/*"], { base: ".", encoding: false }).pipe(
     dest("dist")
   );
 }

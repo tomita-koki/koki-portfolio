@@ -373,7 +373,7 @@ li {
   width: 1.375rem;
   height: 0.125rem;
   background-color: var(--COLOR_DARK);
-  transition: transform 0.25s ease, opacity 0.2s ease;
+  transition: transform 0.25s ease, opacity 0.1s ease;
 }
 
 .header__toggle.is-open .header__toggle-bar:nth-child(1) {
@@ -1028,12 +1028,62 @@ body.is-nav-open {
   padding: 1.5rem;
 }
 
+.work-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
 .work-card__date {
   display: block;
-  margin-bottom: 0.75rem;
   font-family: var(--FONT_MONO);
   font-size: 0.75rem;
   color: var(--COLOR_ACCENT);
+}
+
+.work-card__tag {
+  display: inline-block;
+  padding: 0.1875rem 0.625rem;
+  border: 0.0625rem solid var(--COLOR_BORDER);
+  border-radius: 62.4375rem;
+  font-family: var(--FONT_JA);
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  color: color-mix(in srgb, var(--COLOR_DARK) 55%, transparent);
+}
+
+.work-card__tag--client {
+  border-color: var(--COLOR_ACCENT);
+  background-color: var(--COLOR_ACCENT);
+  color: var(--COLOR_PRIMARY);
+  font-weight: 500;
+}
+
+.work-card__tag--nda {
+  border-color: var(--COLOR_ACCENT);
+  color: var(--COLOR_ACCENT);
+  font-weight: 500;
+}
+
+.work-card--nda:hover {
+  border-color: var(--COLOR_BORDER);
+}
+
+.work-card__thumb--nda {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  color: color-mix(in srgb, var(--COLOR_DARK) 35%, transparent);
+}
+
+.work-card__nda-label {
+  font-family: var(--FONT_MONO);
+  font-size: 0.6875rem;
+  letter-spacing: 0.125rem;
 }
 
 .work-card__title {
@@ -1167,6 +1217,9 @@ body.is-nav-open {
   }
 }
 
+.contact__form-col {
+  min-width: 0;
+}
 @media screen and (min-width: 768px) {
   .contact__form-col {
     grid-column: span 2;
@@ -1174,12 +1227,27 @@ body.is-nav-open {
 }
 
 .contact__panel {
-  padding: 2.5rem;
+  padding: 1.5rem;
   border: 0.0625rem solid var(--COLOR_BORDER);
   border-radius: 0.5rem;
   background-color: color-mix(in srgb, var(--COLOR_PRIMARY) 40%, transparent);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
+}
+@media screen and (min-width: 768px) {
+  .contact__panel {
+    padding: 2.5rem;
+  }
+}
+
+.cf-turnstile {
+  transform: scale(0.9);
+  transform-origin: left top;
+}
+@media screen and (min-width: 768px) {
+  .cf-turnstile {
+    transform: none;
+  }
 }
 
 .contact-form {

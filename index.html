@@ -3,13 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- 描画前に no-js → js を切り替える。CSS が .js を条件に FV を初期非表示にするため、
-       main.js（defer で GSAP 読み込み後に実行）では間に合わない -->
   <script>document.documentElement.classList.replace('no-js', 'js');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="/asset/css/style.css">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/asset/images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/asset/images/apple-touch-icon.png">
 
   <title>koki｜Web制作・コーディング代行</title>
   <meta name="description" content="正確なコーディングから、公開後の運用・保守まで。デザインカンプをそのまま動くかたちにする、フリーランスWeb実装担当のポートフォリオ。">
@@ -216,13 +219,36 @@
         <div class="works-carousel" data-works-carousel>
           <div class="works-carousel__track" data-carousel-track tabindex="0" aria-label="制作実績カルーセル">
             <div class="panel">
+            <span class="panel__marker panel__marker--left" aria-hidden="true">+</span>
+            <a class="work-card" href="https://sekaishiseifuku.com/" target="_blank" rel="noopener noreferrer">
+              <span class="work-card__thumb">
+                <img src="/asset/images/works/sekaishi.jpg" alt="世界史解体新書のサイト" loading="lazy">
+              </span>
+              <span class="work-card__body">
+                <span class="work-card__meta">
+                  <span class="work-card__date">2026</span>
+                  <span class="work-card__tag work-card__tag--client">実案件</span>
+                </span>
+                <span class="work-card__title">世界史解体新書</span>
+                <span class="work-card__desc">予備校講師・著者の世界史解説サイト。「暗記ではなく、点と点の繋がりで学ぶ」をコンセプトにしたコンテンツサイトを実装。</span>
+                <span class="work-card__more">View site
+                  <svg class="icon work-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"></path><path d="M7 7h10v10"></path></svg>
+                </span>
+              </span>
+            </a>
+            </div>
+
+            <div class="panel">
               <span class="panel__marker panel__marker--left" aria-hidden="true">+</span>
               <a class="work-card" href="https://nagi-sauna.syukatutomi.workers.dev/" target="_blank" rel="noopener noreferrer">
                 <span class="work-card__thumb">
                   <img src="/asset/images/works/nagi-sauna.jpg" alt="凪 -NAGI- 山霧のサウナリトリートのサイト" loading="lazy">
                 </span>
                 <span class="work-card__body">
-                  <span class="work-card__date">2026</span>
+                  <span class="work-card__meta">
+                    <span class="work-card__date">2026</span>
+                    <span class="work-card__tag">自主制作</span>
+                  </span>
                   <span class="work-card__title">凪 -NAGI-｜山霧のサウナリトリート</span>
                   <span class="work-card__desc">「何もしない、を満たす」をコンセプトにした山中のサウナ施設サイト。薪サウナ・天然水風呂・外気浴を紹介する予約制リトリートのブランドページを実装。</span>
                   <span class="work-card__more">View site
@@ -232,23 +258,6 @@
               </a>
             </div>
 
-            <div class="panel">
-            <span class="panel__marker panel__marker--left" aria-hidden="true">+</span>
-            <a class="work-card" href="https://sekaishiseifuku.com/" target="_blank" rel="noopener noreferrer">
-              <span class="work-card__thumb">
-                <img src="/asset/images/works/sekaishi.jpg" alt="世界史解体新書のサイト" loading="lazy">
-              </span>
-              <span class="work-card__body">
-                <span class="work-card__date">2025</span>
-                <span class="work-card__title">世界史解体新書</span>
-                <span class="work-card__desc">予備校講師・著者の世界史解説サイト。「暗記ではなく、点と点の繋がりで学ぶ」をコンセプトにしたコンテンツサイトを実装。</span>
-                <span class="work-card__more">View site
-                  <svg class="icon work-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"></path><path d="M7 7h10v10"></path></svg>
-                </span>
-              </span>
-            </a>
-          </div>
-
           <div class="panel">
             <span class="panel__marker panel__marker--left" aria-hidden="true">+</span>
             <a class="work-card" href="https://onlinevideoschool.pages.dev/" target="_blank" rel="noopener noreferrer">
@@ -256,7 +265,10 @@
                 <img src="/asset/images/works/onlineschool.jpg" alt="オンラインスクールのランディングページ" loading="lazy">
               </span>
               <span class="work-card__body">
-                <span class="work-card__date">2025</span>
+                <span class="work-card__meta">
+                  <span class="work-card__date">2025</span>
+                  <span class="work-card__tag">自主制作</span>
+                </span>
                 <span class="work-card__title">オンラインスクール LP</span>
                 <span class="work-card__desc">オンライン教育サービスの紹介と申込導線を設計したランディングページ。</span>
                 <span class="work-card__more">View site
@@ -273,7 +285,10 @@
                 <img src="/asset/images/works/cooking.jpg" alt="オンライン料理教室 エプロンコネクトのランディングページ" loading="lazy">
               </span>
               <span class="work-card__body">
-                <span class="work-card__date">2025</span>
+                <span class="work-card__meta">
+                  <span class="work-card__date">2025</span>
+                  <span class="work-card__tag">自主制作</span>
+                </span>
                 <span class="work-card__title">オンライン料理教室「エプロンコネクト」</span>
                 <span class="work-card__desc">自宅でマンツーマン受講できる料理教室のLP。材料配送・24時間受講・月額制が特徴。</span>
                 <span class="work-card__more">View site
@@ -281,6 +296,25 @@
                 </span>
               </span>
             </a>
+          </div>
+
+          <!-- 非公開案件（NDA）: リンクなしカード -->
+          <div class="panel">
+            <span class="panel__marker panel__marker--left" aria-hidden="true">+</span>
+            <div class="work-card work-card--nda">
+              <span class="work-card__thumb work-card__thumb--nda" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+                <span class="work-card__nda-label">CONFIDENTIAL</span>
+              </span>
+              <span class="work-card__body">
+                <span class="work-card__meta">
+                  <span class="work-card__date">NDA</span>
+                  <span class="work-card__tag work-card__tag--nda">実案件・非公開</span>
+                </span>
+                <span class="work-card__title">非公開案件（2件）</span>
+                <span class="work-card__desc">守秘義務（NDA）により詳細を公開できない実案件です。お打ち合わせの際に、可能な範囲でご紹介いたします。</span>
+              </span>
+            </div>
           </div>
           </div>
 

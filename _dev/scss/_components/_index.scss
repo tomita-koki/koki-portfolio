@@ -517,12 +517,67 @@ $works-carousel-gap: px-to-rem($works-carousel-gap-px);
   padding: px-to-rem(24);
 }
 
+.work-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: px-to-rem(8);
+  margin-bottom: px-to-rem(12);
+}
+
 .work-card__date {
   display: block;
-  margin-bottom: px-to-rem(12);
   font-family: var(--FONT_MONO);
   font-size: px-to-rem(12);
   color: var(--COLOR_ACCENT);
+}
+
+// 実案件 / 自主制作の区別タグ
+.work-card__tag {
+  display: inline-block;
+  padding: px-to-rem(3) px-to-rem(10);
+  border: px-to-rem(1) solid var(--COLOR_BORDER);
+  border-radius: px-to-rem(999);
+  font-family: var(--FONT_JA);
+  font-size: px-to-rem(11);
+  line-height: 1.4;
+  color: color-mix(in srgb, var(--COLOR_DARK) 55%, transparent);
+}
+
+// 実案件はアクセント色の塗りで目立たせる
+.work-card__tag--client {
+  border-color: var(--COLOR_ACCENT);
+  background-color: var(--COLOR_ACCENT);
+  color: var(--COLOR_PRIMARY);
+  font-weight: 500;
+}
+
+// 実案件だが非公開: アクセント色のアウトラインで公開実案件と区別する
+.work-card__tag--nda {
+  border-color: var(--COLOR_ACCENT);
+  color: var(--COLOR_ACCENT);
+  font-weight: 500;
+}
+
+// 非公開（NDA）案件カード: リンクがないためホバー演出を無効化する
+.work-card--nda:hover {
+  border-color: var(--COLOR_BORDER);
+}
+
+// サムネイルの代わりに錠前アイコン + CONFIDENTIAL 表記
+.work-card__thumb--nda {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: px-to-rem(12);
+  color: color-mix(in srgb, var(--COLOR_DARK) 35%, transparent);
+}
+
+.work-card__nda-label {
+  font-family: var(--FONT_MONO);
+  font-size: px-to-rem(11);
+  letter-spacing: px-to-rem(2);
 }
 
 .work-card__title {
@@ -660,18 +715,37 @@ $works-carousel-gap: px-to-rem($works-carousel-gap-px);
 }
 
 .contact__form-col {
+  // グリッドアイテムの min-width: auto を打ち消す。
+  // 固定幅の Turnstile ウィジェットが列幅を押し広げるのを防ぐ
+  min-width: 0;
+
   @include media-query {
     grid-column: span 2;
   }
 }
 
 .contact__panel {
-  padding: px-to-rem(40);
+  padding: px-to-rem(24);
   border: px-to-rem(1) solid var(--COLOR_BORDER);
   border-radius: px-to-rem(8);
   background-color: color-mix(in srgb, var(--COLOR_PRIMARY) 40%, transparent);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
+
+  @include media-query {
+    padding: px-to-rem(40);
+  }
+}
+
+// Turnstile ウィジェットは固定幅 300px（iframe）で縮まないため、
+// パネル内幅が 300px を下回る SP では縮小表示してはみ出しを防ぐ
+.cf-turnstile {
+  transform: scale(0.9);
+  transform-origin: left top;
+
+  @include media-query {
+    transform: none;
+  }
 }
 
 .contact-form {

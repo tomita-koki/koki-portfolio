@@ -63,7 +63,9 @@
   width: px-to-rem(22);
   height: px-to-rem(2);
   background-color: var(--COLOR_DARK);
-  transition: transform 0.25s ease, opacity 0.2s ease;
+  // opacity は真ん中の線の消滅用。回転（0.25s）より先に消えないと
+  // × の上に線が残って見えるため短めにする
+  transition: transform 0.25s ease, opacity 0.1s ease;
 }
 
 .header__toggle.is-open .header__toggle-bar:nth-child(1) {
