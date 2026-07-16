@@ -130,7 +130,7 @@ function initFvBackground() {
     const ctx = canvas.getContext('2d');
     const accent = getComputedStyle(document.documentElement)
       .getPropertyValue('--COLOR_ACCENT').trim() || '#3538CD';
-    const LINK = 130;
+    let linkDist = 130;
     let w = 0;
     let h = 0;
     let parts = [];
@@ -144,8 +144,12 @@ function initFvBackground() {
       canvas.height = h * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      // 面積に応じて点の数を決める（最小24・最大72）
-      const count = Math.min(72, Math.max(24, Math.round((w * h) / 20000)));
+      // 線を結ぶ距離は画面幅に応じて縮める。固定 130px だと SP では
+      // 画面幅の 1/3 に相当し、ほぼ全点が結ばれて蜘蛛の巣状になる
+      linkDist = Math.min(130, w * 0.25);
+
+      // 面積に応じて点の数を決める（最小12・最大72）
+      const count = Math.min(72, Math.max(12, Math.round((w * h) / 20000)));
       parts = [];
       for (let i = 0; i < count; i += 1) {
         parts.push({
@@ -176,8 +180,8 @@ function initFvBackground() {
           const dx = parts[a].x - parts[b].x;
           const dy = parts[a].y - parts[b].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < LINK) {
-            ctx.globalAlpha = (1 - dist / LINK) * 0.3;
+          if (dist < linkDist) {
+            ctx.globalAlpha = (1 - dist / linkDist) * 0.3;
             ctx.beginPath();
             ctx.moveTo(parts[a].x, parts[a].y);
             ctx.lineTo(parts[b].x, parts[b].y);
